@@ -1,4 +1,5 @@
 employees={}
+teams = {} 
 def change_employee_details():
 	print("Enter 1 for change name")
 	print("Enter 2 for change age")
@@ -16,7 +17,6 @@ def change_employee_details():
 		employees[employee_id]['salary'] = input("\tEnter new salary")
 	else:
 		print("invalid choice!!")
-		
 def display_employee():
 	for id,employee in employees.items():
 		print(f"\t{id} | {employee['name']} | {employee['age']} | {employee['place']} | {employee['gender']} | {employee['previous_company']} | {employee['salary']} ")
@@ -58,13 +58,96 @@ def add_employee():
 		employees[employee_id] = temp
 	else:
 		 print("\tEmployee id  already Taken")
-while True:
+def manage_all_team_menu():
+	print("\t1.Create Team")
+	print("\t2.Display Team")
+	print("\t3.Manage Team(Particular)")
+	print("\t4.Delete Team")
+	print("\t5.Exit")
+
+def manage_all_teams():
+	while True:
+		manage_all_team_menu()
+		ch = int(input("\tEnter your choice "))
+		if ch == 1:
+			create_team()
+		elif ch == 2:
+			display_teams()
+		elif ch == 3:
+			manage_team()
+		elif ch == 4:
+			delete_team()
+		elif ch == 5:
+			break
+		else:
+			print("\tInvalid choice")
+def create_team():
+	team_name = input("\tEnter team name ")
+	teams[team_name] = []
+
+def delete_team():
+	team_name = input("\tEnter team name ")
+	if team_name in teams.keys():
+		del teams[team_name]
+		print("\tDeleted the team")
+	else:
+		print("\tWrong team name")
+
+def display_teams():
+	for key,value in teams.items(): 
+		name_string = ""
+		for i in value:
+			name_string = name_string +"|"+employees[i]["name"]
+		print(f"{key} => {name_string}")
+
+def manage_team_menu():
+	print("\t1.Add Member")
+	print("\t2.Delete Member")
+	print("\t3.List Members")
+
+def manage_team():
+	team_name = input("\t\tEnter team name ")
+	manage_team_menu()
+	ch = int(input("\t\t Enter your Choice "))
+	if ch == 1:
+		add_member(team_name)
+	elif ch == 2:
+		delete_member(team_name)
+	elif ch == 3:
+		list_member(team_name)
+	else:
+		print("\tInvalid choice")	
+	
+def add_member(team_name):
+	display_employee()
+	serial_no = input("\t\tEnter the serial no ofemployee ")
+	if serial_no in employees.keys():
+		teams[team_name].append(serial_no)
+	else:
+		print("\t\tWrong serial No.")
+def list_member(team_name):
+	name_string=""
+	for i in teams[team_name]:
+		name_string = name_string +"|"+i+"."+employees[i]["name"]
+	print(f"{name_string}")
+
+def delete_member(team_name):
+	list_member(team_name)
+	serial_no = input("\t\tEnter serial no from list")
+	if serial_no in teams[team_name]:
+		teams[team_name].remove(serial_no)
+	else:
+		print("\t\tWrong serial No.")
+def main_menu():
 	print("Press 1 for add employee")
 	print("Press 2 for delete employee ")
 	print("Press 3 for search employee")
 	print("Press 4 for display  employee")
 	print("Press 5 for change employee details")
-	print("Press 6 for Quit")
+	print("Press 6 fo manage teams")
+	print("Press 7 for Quit")
+while True:
+	main_menu()
 	ch = int(input("Enter choice"))
 	if ch == 1:
 		add_employee()
@@ -76,7 +159,9 @@ while True:
 		display_employee()
 	elif ch== 5:
 		change_employee_details()
-	elif ch == 6:
+	elif ch== 6:
+		manage_all_teams()
+	elif ch == 7:
 		break;
 	else:
 		print("Invalid Choice")
