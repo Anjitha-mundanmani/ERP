@@ -20,16 +20,17 @@ def change_employee_details():
 def display_employee():
 	for id,employee in employees.items():
 		print(f"\t{id} | {employee['name']} | {employee['age']} | {employee['place']} | {employee['gender']} | {employee['previous_company']} | {employee['salary']} ")
-def search_employee():
-	name = input("\tEnter name")
-	found = False
-	for i in employees.values():
-		if i["name"] == name: 
-			print(f"\t{i['name']} | {i['age']} | {i['place']} | {i['gender']} | {i['previous_company']} | {i['salary']} ")
-			found = True
-			break
-		if found == False :
-			print("\tNot found")
+		
+#def search_employee():
+#	name = input("\tEnter name")
+#	found = False
+#	for i in employees.values():
+#		if i["name"] == name: 
+#			print(f"\t{i['name']} | {i['age']} | {i['place']} | {i['gender']} | {i['previous_company']} | {i['salary']} ")
+#			found = True
+#			break
+#		if found == False :
+#			print("\tNot found")
 def delete_employee():
 	eid = input("\tEnter employee id")
 	if eid not in employees.keys():
@@ -146,6 +147,49 @@ def main_menu():
 	print("Press 5 for change employee details")
 	print("Press 6 fo manage teams")
 	print("Press 7 for Quit")
+def search_menu():
+	
+	print("Press 1 for search by name")
+	print("Press 2 for search by age")
+	print("Press 3 for search by salary")
+	print("Press 4 for search  by gender")
+	print("Press 5 for exit")
+	while True:
+	
+		choice = int(input("Enter choice"))
+		if choice == 1:
+			search_by_name()
+		elif choice == 2:
+			search_by_age()
+		elif choice == 3:
+			search_by_salary()
+		elif choice == 4:
+			search_by_gender()
+		elif choice == 5:
+			break
+		else:
+			print("Invalid choice")
+def search_by_name():	
+	name=input("Enter the name")
+	print(list(filter(lambda a:a["name"] == name, employees.values())))
+	print("We Found")
+	#if name in employees.values():
+	#	print(list(filter(lambda a:a["name"] == name, employees.values())))
+	#	print("We Found")
+	#else:
+		##print("Not Found")
+def search_by_age():	
+	age=int(input("Enter the age"))
+	print(list(filter(lambda a:a["age"] == age, employees.values())))
+	print("We Found")
+def search_by_salary():	
+	salary=int(input("Enter the salary"))
+	print(list(filter(lambda a:a["salary"] == salary, employees.values())))
+	print("We Found")
+def search_by_gender():	
+	gender=input("Enter the gender")
+	print(list(filter(lambda a:a["gender"] == gender, employees.values())))
+	print("We Found")
 while True:
 	main_menu()
 	ch = int(input("Enter choice"))
@@ -154,7 +198,7 @@ while True:
 	elif ch == 2:
 		delete_employee()
 	elif ch == 3:
-		search_employee()
+		search_menu()
 	elif ch == 4:
 		display_employee()
 	elif ch== 5:
