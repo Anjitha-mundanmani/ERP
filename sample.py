@@ -1,5 +1,6 @@
 employees={}
 teams = {} 
+org={}
 def change_employee_details():
 	print("Enter 1 for change name")
 	print("Enter 2 for change age")
@@ -190,7 +191,12 @@ def search_by_gender():
 	gender=input("Enter the gender")
 	print(list(filter(lambda a:a["gender"] == gender, employees.values())))
 	print("We Found")
+def add_oganization():
+	org['name']=input("Enter organization name")
+	org['email']=input("Enter email")
+	pass
 while True:
+	add_oganization()
 	main_menu()
 	ch = int(input("Enter choice"))
 	if ch == 1:
