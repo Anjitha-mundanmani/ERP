@@ -1,3 +1,4 @@
+from user import User 
 from employee import Employee 
 from emp_store import employees
 import search as s
@@ -16,17 +17,10 @@ while True:
 	
 	ch = int(input("Enter your choice"))
 	if ch == 1:
-		e_id = input("\tEnter employee id : ")
-		name = input("\tEnter name : ")
-		age = input("\tEnter employee age : ")
-		gender = input("\tEnter gender : ")
-		place = input("\tEnter place : ")
-		salary = input("\tEnter salary : ")
-		previous_company = input("\tEnter previous company : ")
-		joining_date = input("\tEnter joining_date : ")
-
-		st_temp = Employee(e_id,name,age,gender,place,salary,previous_company,joining_date)
+		
+		st_temp = Employee()
 		employees.append(st_temp)
+		employees[-1].insert()
 
 	elif ch == 2:
 		print(employees)
@@ -41,7 +35,8 @@ while True:
 		
 	elif ch == 4:
 		for i in employees:
-			print(f"{i.name} | {i.age} | {i.gender} | {i.place} | {i.salary}| {i.previous_company} | {i.joining_date}")
+			i.display()
+			
 	elif ch== 5:
 		change.change_main()
 	
