@@ -19,6 +19,7 @@ def search_main():
 			else:
 				for i in st:
 					print(f"{i.name}")
+					print("Found!!")
 		elif cho == 2:
 			age = input("Enter age :")
 			st = list(filter(lambda a: a.age == age , employees))
@@ -27,7 +28,7 @@ def search_main():
 			else:
 				for i in st:
 					print(f"{i.age}")
-					print(employees)
+					print("Found!!")
 		elif cho == 3:
 			salary = input("Enter salary :")
 			st = list(filter(lambda a: a.salary == salary , employees))
@@ -36,7 +37,7 @@ def search_main():
 			else:
 				for i in st:
 					print(f"{i.salary}")
-					print(employees)
+					print("Found!!")
 		elif cho == 4:
 			gender = input("Enter gender :")
 			st = list(filter(lambda a: a.gender == gender , employees))
@@ -45,7 +46,7 @@ def search_main():
 			else:
 				for i in st:
 					print(f"{i.gender}")
-					print(employees)
+					print("Found!!")
 		elif cho == 5:
 			break
 		else:
